@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
+group = "com.github.hantomato"      // for github
+
 android {
     namespace = "com.moondal.apputillib"
     compileSdk = 35
@@ -40,5 +42,3 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
-
-group = "com.github.hantomato"

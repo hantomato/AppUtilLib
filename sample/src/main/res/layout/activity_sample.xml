@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".SampleActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="AppUtilLob Sample"
+        tools:ignore="HardcodedText" />
+
+    <com.moondal.apputillib.widget.seekbar.FlatSeekBar
+        android:id="@+id/flatSeekBar1"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginTop="12dp" />
+
+    <com.moondal.apputillib.widget.seekbar.FlatSeekBar
+        android:id="@+id/flatSeekBar2"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginTop="12dp" />
+
+    <com.moondal.apputillib.widget.seekbar.FlatSeekBar
+        android:id="@+id/flatSeekBar3"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginTop="12dp"
+        app:backgroundColor="#dddddd"
+        app:max="100"
+        app:progress="30"
+        app:progressColor="#8888ff" />
+
+    <com.moondal.apputillib.widget.seekbar.TransparentSeekBar
+        android:layout_marginTop="22dp"
+        android:id="@+id/transparentSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:backgroundColor="#FED2E2"
+        app:endPadding="8dp"
+        app:max="100"
+        app:progress="50"
+        app:progressColor="#E9A5F1"
+        app:radius="8dp"
+        app:startPadding="8dp"
+        app:textColor="#8F87F1"
+        app:textSize="13sp" />
+
+    <com.moondal.apputillib.widget.seekbar.LabelSeekBar
+        android:layout_marginTop="22dp"
+        android:id="@+id/labelSeekBar1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:backgroundColor="#FED2E2"
+        app:endPadding="8dp"
+        app:max="100"
+        app:progress="50"
+        app:progressColor="#E9A5F1"
+        app:radius="8dp"
+        app:startPadding="8dp"
+        app:textColor="#8F87F1"
+        app:textSize="13sp" />
+
+    <com.moondal.apputillib.widget.seekbar.LabelSeekBar
+        android:layout_marginTop="22dp"
+        android:id="@+id/labelSeekBar2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        app:backgroundColor="#FED2E2"
+        app:endPadding="8dp"
+        app:max="100"
+        app:progress="50"
+        app:progressColor="#E9A5F1"
+        app:radius="8dp"
+        app:startPadding="8dp"
+        app:textColor="#8F87F1"
+        app:textSize="13sp" />
+
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:min="-20"
+        android:max="20"
+        android:progress="0"
+        android:layout_marginTop="22dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
