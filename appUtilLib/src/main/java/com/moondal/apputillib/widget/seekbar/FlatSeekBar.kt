@@ -23,8 +23,8 @@ open class FlatSeekBar(context: Context, attrs: AttributeSet?) : View(context, a
         fun onStopTrackingTouch(seekBar: FlatSeekBar) {}
     }
 
-    private var mMin = 0
-    private var mMax = 100
+    protected var mMin = 0
+    protected var mMax = 100
     protected var mProgress = 0
     protected var backgroundPaint: Paint
     protected var progressPaint: Paint

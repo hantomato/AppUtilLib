@@ -121,5 +121,18 @@ class SampleActivity : AppCompatActivity() {
 
         })
 
+        binding.mySeekbar.setInitValue(-100, 200, 0, 10)
+        binding.mySeekbar.setLabelText("Custom")
+        binding.mySeekbar.setInitColor(Color.parseColor("#E4EFE7"), Color.parseColor("#99BC85"))
+        binding.mySeekbar.setOnSeekBarChangeListener(object : FlatSeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: FlatSeekBar, progress: Int, fromUser: Boolean) {
+                Log.d(TAG, "labelSeekBar2.onProgressChanged: progress:$progress, fromUser:$fromUser")
+            }
+
+            override fun onScaledProgressChanged(seekBar: FlatSeekBar, scaledProgress: Int, fromUser: Boolean) {
+                Log.d(TAG, "labelSeekBar2.onProgressChanged: scaledProgress:$scaledProgress, fromUser:$fromUser")
+            }
+
+        })
     }
 }

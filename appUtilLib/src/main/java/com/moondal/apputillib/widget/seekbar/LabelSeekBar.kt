@@ -15,7 +15,7 @@ import com.moondal.apputillib.R
  */
 open class LabelSeekBar(context: Context, attrs: AttributeSet?) : FlatSeekBar(context, attrs) {
 
-    private var labelText: String = ""
+    protected var leftLabelText: String = ""
 
     protected var radius = 0f
     protected var startPadding = 0f
@@ -55,7 +55,7 @@ open class LabelSeekBar(context: Context, attrs: AttributeSet?) : FlatSeekBar(co
             textPaint.textAlign = Paint.Align.LEFT
             val labelTextX = 0 + startPadding // 텍스트 X 좌표 (오른쪽 정렬)
             val labelTextY = height / 2f - ((textPaint.descent() + textPaint.ascent()) / 2) // 텍스트 Y 좌표 (중앙 정렬)
-            drawText(labelText, labelTextX, labelTextY, textPaint)
+            drawText(leftLabelText, labelTextX, labelTextY, textPaint)
 
             // draw value text
             textPaint.textAlign = Paint.Align.RIGHT
@@ -67,7 +67,7 @@ open class LabelSeekBar(context: Context, attrs: AttributeSet?) : FlatSeekBar(co
     }
 
     fun setLabelText(labelText: String) {
-        this.labelText = labelText
+        this.leftLabelText = labelText
         invalidate()
     }
 
