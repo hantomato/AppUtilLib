@@ -84,6 +84,12 @@
         app:textColor="#8F87F1"
         app:textSize="13sp" />
 
+    <com.moondal.apputillib.widget.seekbar.LabelSeekBar
+        android:layout_marginTop="22dp"
+        android:id="@+id/labelSeekBar3"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
     <SeekBar
         android:id="@+id/seekbar"
         android:min="-20"

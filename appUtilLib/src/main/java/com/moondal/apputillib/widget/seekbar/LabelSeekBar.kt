@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.core.graphics.withClip
 import com.moondal.apputillib.R
@@ -66,8 +67,21 @@ open class LabelSeekBar(context: Context, attrs: AttributeSet?) : FlatSeekBar(co
         }
     }
 
+    fun setLabelInitValue(text: String, textColor: Int, textSize: Float = 40f, textBold: Boolean = false) {
+        leftLabelText = text
+        textPaint.color = textColor
+        textPaint.textSize = textSize
+        textPaint.typeface = Typeface.create(Typeface.DEFAULT, if (textBold) Typeface.BOLD else Typeface.NORMAL)
+        invalidate()
+    }
+
     fun setLabelText(labelText: String) {
         this.leftLabelText = labelText
+        invalidate()
+    }
+
+    fun setLabelColor(labelColor: Int) {
+        textPaint.color = labelColor
         invalidate()
     }
 

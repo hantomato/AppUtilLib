@@ -106,6 +106,17 @@ class SampleActivity : AppCompatActivity() {
 
         })
 
+        binding.labelSeekBar3.setInitValue(0, Int.MAX_VALUE, 0)
+        binding.labelSeekBar3.setLabelInitValue("Text Size", Color.parseColor("#4444FF"), 40f, true)
+        binding.labelSeekBar3.setInitColor(Color.parseColor("#E4EFE7"), Color.parseColor("#99BC85"))
+        binding.labelSeekBar3.setOnSeekBarChangeListener(object : FlatSeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: FlatSeekBar, progress: Int, fromUser: Boolean) {
+                binding.labelSeekBar3.setLabelColor(progress)
+                binding.labelSeekBar3.setLabelText("Size: " + progress.toString())
+            }
+
+        })
+
         binding.seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 Log.d(TAG, "seekbar.onProgressChanged: progress:$progress, fromUser:$fromUser")
