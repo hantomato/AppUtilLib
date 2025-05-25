@@ -32,6 +32,10 @@ open class FlatSeekBar(context: Context, attrs: AttributeSet?) : View(context, a
     private var isTrackingTouch = false // 터치 중 여부
     private var touchStartX = 0f // 터치 시작 x 좌표 저장
 
+    // 상태바 내리는데 밝기가 변경되었다는 클레임때문에
+    private var downTime = 0L // ACTION_DOWN 시간
+    private var trackingEnable: Boolean = true
+
     var scaleFactor: Int = 1        // value 에 곱할 값
 
 
@@ -128,20 +132,31 @@ open class FlatSeekBar(context: Context, attrs: AttributeSet?) : View(context, a
         return when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 touchStartX = event.x // 터치 시작 x 좌표 저장
+                downTime = System.currentTimeMillis()
+                trackingEnable = true
                 true // ACTION_MOVE 이벤트 처리를 위해 true 반환
             }
 
             MotionEvent.ACTION_MOVE -> {
                 val deltaX = event.x - touchStartX // x 좌표 변화량 계산
-                val dragThreshold = 20f // 드래그 감지 최소 이동 거리
+                val dragThreshold = 26f // 드래그 감지 최소 이동 거리
 
-                if (!isTrackingTouch && Math.abs(deltaX) > dragThreshold) {
-                    // 드래그 시작
-                    parent.requestDisallowInterceptTouchEvent(true)
-                    isTrackingTouch = true
-                    onStartTrackingTouch()
-                    updateProgress(event.x)
-                    true
+                // 컨트롤 외각으로 나갔는데. 이게 0.3초 내에 이뤄졌다면 tracking 불가임
+                if (!isInsideView(event.x, event.y)) {
+                    if ((downTime + 300) > System.currentTimeMillis()) {   // 0.3초 내에
+                        trackingEnable = false
+                    }
+                }
+
+                if (trackingEnable) {
+                    if (!isTrackingTouch && Math.abs(deltaX) > dragThreshold) {
+                        // 드래그 시작
+                        parent.requestDisallowInterceptTouchEvent(true)
+                        isTrackingTouch = true
+                        onStartTrackingTouch()
+                        updateProgress(event.x)
+                        true
+                    }
                 }
 
                 if (isTrackingTouch) {
@@ -158,9 +173,11 @@ open class FlatSeekBar(context: Context, attrs: AttributeSet?) : View(context, a
                     parent.requestDisallowInterceptTouchEvent(false)
                     true
                 } else {
-                    onStartTrackingTouch() // 탭 시 onStartTrackingTouch 호출
-                    updateProgress(event.x) // 탭한 위치로 progress 업데이트
-                    onStopTrackingTouch() // 탭 시 onStopTrackingTouch 호출
+                    if (isInsideView(event.x, event.y)) {
+                        onStartTrackingTouch() // 탭 시 onStartTrackingTouch 호출
+                        updateProgress(event.x) // 탭한 위치로 progress 업데이트
+                        onStopTrackingTouch() // 탭 시 onStopTrackingTouch 호출
+                    }
                 }
                 false
             }
@@ -177,6 +194,10 @@ open class FlatSeekBar(context: Context, attrs: AttributeSet?) : View(context, a
 
             else -> super.onTouchEvent(event)
         }
+    }
+
+    private fun isInsideView(x: Float, y: Float): Boolean {
+        return x >= 0 && x < width && y >= 0 && y < height
     }
 
     private fun updateProgress(x: Float) {
